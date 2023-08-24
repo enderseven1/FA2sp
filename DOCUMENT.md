@@ -1,80 +1,80 @@
-# FINALALERT2 - SP  DOCUMENT
+# FINALALERT2 - SP  帮助文档（Enderseven Tina汉化）
 
-## GETTING START
-- Just like Ares, FA2sp needs Syringe to work properly, so you can just take Ares as a reference.
-- What you need to know is that FA2sp requires Vanilla FinalAlert 2 1.02, any modified version may lead to unexpected errors!
-- Before you launch it for the first time, write the ini files below properly, especially for essential ones (marked by **x**).
-- If you still have any problem about it or something wrong occured while using it, please contact me directly or mail me at 3179369262@qq.com.
-- Now you can also join Discord server https://discord.gg/k4SVuMm, and found `map-editors` under `DEDICATED PROJECTS`.
-- For now, I cannot ensure the stability of it, so save your maps frequently before heavy loss! XD
+## 开始
+- FA2SP和Ares一样需要Syringe.exe工作，可以参考Ares。
+- FA2SP推荐原版FinalAlert2 v1.02，其他版本可能会出错！
+- 首次启动它请正确编写下面的 ini 文件，尤其是基本文件（以**x**标记）。
+- 如果有任何问题，请直接与我联系或邮件至3179369262@qq.com。
+- 你可以加入 Discord 服务器 https://discord.gg/k4SVuMm，并在 `DEDICATED PROJECTS` 下找到 `map-editors` 。
+- 可能不稳定，请常保存以防损失！XD
 
-The multiple selection function is now available. Press Ctrl key to select tiles and press Ctrl+Shift key to deselect them. Ctrl+D can clear all selected tiles.
-Now this feature supports RaiseSingleTile/LowerSingleTile (though they are not "Single" anymore), copy paste, and calucating selected area ore value.
+多选功能现已可用。Ctrl选择磁贴，Ctrl+Shift取消选择。Ctrl+D清除所有选定的磁贴。
+此功能支持 RaiseSingleTile/LowerSingleTile（尽管它们不再是“单一”）、复制粘贴和计算选定的区域矿石值。
 
-## BASIC TYPES
-- **INTEGER** 
-  - Ranges in $[-2147483648,2147483647]$
+## 基本
+- **INTEGER** 整数
+  - $[-2147483648,2147483647]$ 之间的整数
     - $-1$ $|$ $2$ $|$ $114514$
-- **POINT** 
+- **POINT** 列表
   - **INTEGER**, **INTEGER**
     - $1, 2$ $|$ $114514, 1919810$
-- **BOOLEAN** 
+- **BOOLEAN** 是非
   - $Yes/No$, $True/False$, $1/0$
     - $Yes$ $|$ $true$ $|$ $1$
-- **COLORREF** 
-  - R,G,B each of them ranges in $[0,255]$
+- **COLORREF** 颜色
+  - RGB颜色，数值在 $[0,255]$ 之间
     - $255, 255 ,0$ $|$ $0, 0, 60$
 
-## BASIC TYPES
+## 基本
 - FAData.ini
     - [ExtConfigs]
-        - **ObjectBrowser**, if `ModernObjectBrowser` is enabled, `BrowserRedraw` won't be useful
-            - `BrowserRedraw` = **BOOLEAN** ; Enable refactored ObjectBrowserView 
-            - `ModernObjectBrowser` = **BOOLEAN** ; If this value is true, then experimental object browser will be enabled, replacing the vanilla tree view, defaults to **false**
-                - `ObjectBrowser.GuessMode` = **$0/1$** ; Determines how FA2sp guess Technos' side, $0$(Default) to Prerequisite, $1$ to use first Owner 
-                - `ObjectBrowser.CleanUp` = **BOOLEAN** ; Sides classification will clear empty items
-                - `ObjectBrowser.SafeHouses` = **BOOLEAN** ; Determines whether FA2sp will rearrangement the houses or not
-        - `AllowIncludes` = **BOOLEAN** ; Read #include section for other ini (NOT RECOMMENDED) 
-        - `AllowPlusEqual` = **BOOLEAN** ; Read += (NOT RECOMMENDED)
-        - `TutorialTexts.Fix` = **BOOLEAN** ; Replace original process while loading texts to comboboxes
-        - `TutorialTexts.Hide` = **BOOLEAN** ; Reduce lags, for texts in combobox might be useless
-        - `SortByTriggerName` = **BOOLEAN** ; Enable this feature so we can sort the triggers by their names
-        - `AdjustDropdownWidth` = **BOOLEAN** ; Enable it so FA2 will adjust the param dropdown width automatically
-            - `AdjustDropdownWidth.Factor` = **INTEGER** ; Determines how long is a single char takes, defaults to $8$
-            - `AdjustDropdownWidth.Max` = **INTEGER** ; Determines the max length of the combobox, defaults to 360
-        - `CopySelectionBound.Color` = **COLORREF** ; Determines the color of the selection boundary while copying, defaults to $255,0,0$
-        - `CursorSelectionBound.Color` = **COLORREF** ; Determines the color of the boundary for current cell, defaults to $60,160,60$
-        - `HeightIndicatorColor.Color` = **COLORREF** ; Determines the color of the height indicator for current cell, defaults to $60,60,60$
-        - `Waypoint.Color` = **COLORREF** ; Determines the color of waypoint texts, default to $0,0,255$
-        - `Waypoint.Background` = **BOOLEAN** ; Determines whether draw a rectangle background for waypoints or not. defaults to false
-        - `Waypoint.Background.Color` = **COLORREF** ; Determines the color of the waypoint background, defaults to $255,255,255$
-        - `Waypoint.Text.ExtraOffset` = **POINT** ; Additional X and Y-axis offset for waypoint text, defaults to $0,0$
-        - `ExtWaypoints` = **BOOLEAN** ; Determines if FA2sp supports unlimited count of waypoints, defaults to **false** (Phobos required)
-        - `UndoRedoLimit` = **INTEGER** ; Determines the maximun step of undo/redo, defaults to $16$
-        - `UseRGBHouseColor` = **BOOLEAN** ; Determines if House colors are recognized as RGB color instead of HSV, defaults to **false** 
-        - `SaveMap.AutoSave` = **BOOLEAN** ; Determines if FA2 will save map automatically
-            - `SaveMap.AutoSave.Interval` = **INTEGER** ; Should be greater than or equal to $30$, defaults to $300$, determines how many seconds should we wait during the two auto saving
-            - `SaveMap.AutoSave.MaxCount` = **INTEGER** ; How many saving should FA2 keep, set to $-1$ will disable the auto cleanning, defaults to $10$
-        - `SaveMap.OnlySaveMAP` = **BOOLEAN** ; Determines if FA2 will only save map with *.map* file extension
-        - `SaveMap.DefaultPreviewOptionMP` = **INTEGER** ; Default radio option button for preview generation when saving multiplayer maps 
-          - $0$ = Always generate new preview
-          - $1$ = Do no generate new preview
-          - $2$ = Always generate hidden preview
-          - defaults to $0$.
-        - `SaveMap.DefaultPreviewOptionSP` = **INTEGER** ; Same as the **MP** one but for **SP** maps, defaults to $1$
-        - `VerticalLayout` = **BOOLEAN** ; Determines if FA2 will make the bottom view go to the right side
-        - `RecentFileLimit` = **INTEGER** ; How many recent files should I keep? ranges from $4$ to $9$
-        - `MultiSelectionColor` = **COLORREF** ; Determines the back color of selected tiles
-        - `MultiSelectionShiftDeselect` = **BOOLEAN** ; Determines the hotkey of deselect all multiselected cells would be CTRL+SHIFT+D(**true**) or CTRL+D(**false**), defaults to **false**
-        - `RandomTerrainObjects` = **BOOLEAN** ; Determines if FA2 will display all terrain objects in random tree dialog, defaults to **false**
-        - `DDrawInVideoMem` = **BOOLEAN** ; Determines if FA2 will allocate DirectDraw surface in the video memory, defaults to **true**
-        - `DDrawEmulation` = **BOOLEAN** ; Determines if FA2 will use emulation mode for DirectDrawCreate, defaults to **false**
-        - `NoHouseNameTranslation` = **BOOLEAN** ; Determines if FA2 will translate house to their UIName, defaults to **false**
-        - `EnableMultiSelection` = **BOOLEAN** ; Determines if FA2sp will enable expermental multi-selection features, defaults to **false**
-        - `ExtendedValidationNoError` = **BOOLEAN** ; If this value is true, then extended map validation won't be shown as error but warning, defaults to **false**
-        - `HideNoRubbleBuilding` = **BOOLEAN** ; If this value is true, then building whose HP = 0 with `LeaveRubble=no` won't be rendered, defaults to **false**
-    - **`[Sides]`** (**x** means this item is **essensial**, fa2sp need this section to work properly)
-        - Contains a list of sides registered in rules
+        - **ObjectBrowser**，`ModernObjectBrowser` 启用时 `BrowserRedraw` 将不会有用。
+            - `BrowserRedraw` = **BOOLEAN** ; 启用重构的ObjectBrowserView 
+            - `ModernObjectBrowser` = **BOOLEAN** ; 启用实验对象浏览器，替换原版树状视图，默认不启用
+                - `ObjectBrowser.GuessMode` = **$0/1$** ; 判断阵营的标准，$0$（默认）为Prerequisite，$1$ 为Owner的第一位
+                - `ObjectBrowser.CleanUp` = **BOOLEAN** ; 清除阵营里的空项目
+                - `ObjectBrowser.SafeHouses` = **BOOLEAN** ; 重新排列国家
+        - `AllowIncludes` = **BOOLEAN** ; 读取其他ini的#include部分（不推荐）
+        - `AllowPlusEqual` = **BOOLEAN** ; 读取 += 符号（不推荐）
+        - `TutorialTexts.Fix` = **BOOLEAN** ; 将文本加载到组合框时替换原始进程
+        - `TutorialTexts.Hide` = **BOOLEAN** ; 减少滞后，因为组合框中的文本可能无用
+        - `SortByTriggerName` = **BOOLEAN** ; 按照名称对触发进行排序
+        - `AdjustDropdownWidth` = **BOOLEAN** ; 自动调整参数下拉列表宽度
+            - `AdjustDropdownWidth.Factor` = **INTEGER** ; 一个字符需要多长时间，默认 $8$
+            - `AdjustDropdownWidth.Max` = **INTEGER** ; 组合框的最大长度，默认为 360
+        - `CopySelectionBound.Color` = **COLORREF** ; 复制时选择框的颜色，默认 $255,0,0$
+        - `CursorSelectionBound.Color` = **COLORREF** ; 当前单元格边界的颜色，默认为 $60,160,60$
+        - `HeightIndicatorColor.Color` = **COLORREF** ; 当前单元格高度指示器的颜色，默认为 $60,60,60$
+        - `Waypoint.Color` = **COLORREF** ; 航点文本的颜色，默认为 $0,0,255$
+        - `Waypoint.Background` = **BOOLEAN** ; 为航点绘制矩形背景。 默认为 false
+        - `Waypoint.Background.Color` = **COLORREF** ; 航点背景颜色，默认为 $255,255,255$
+        - `Waypoint.Text.ExtraOffset` = **POINT** ; 航点文本的附加 X 轴和 Y 轴偏移量，默认为 $0,0$
+        - `ExtWaypoints` = **BOOLEAN** ; 支持无限数量的航点，默认为 **false**（需要Phobos平台）
+        - `UndoRedoLimit` = **INTEGER** ; 确定撤消/重做的最大次数，默认为 $16$
+        - `UseRGBHouseColor` = **BOOLEAN** ; 国家颜色使用RGB，默认为 **false** 
+        - `SaveMap.AutoSave` = **BOOLEAN** ; 自动保存地图
+            - `SaveMap.AutoSave.Interval` = **INTEGER** ; 几秒保存一次，建议不小于$30$，默认为 $300$
+            - `SaveMap.AutoSave.MaxCount` = **INTEGER** ; 缓存次数，设置为 $-1$ 将禁用自动清理，默认为 $10$
+        - `SaveMap.OnlySaveMAP` = **BOOLEAN** ; 只保存为 *.map* 文件
+        - `SaveMap.DefaultPreviewOptionMP` = **INTEGER** ; 保存多人游戏地图时用于生成预览的默认单选选项按钮
+          - $0$ = 生成新预览
+          - $1$ = 不生成新预览
+          - $2$ = 生成隐藏预览
+          - 默认为 $0$.
+        - `SaveMap.DefaultPreviewOptionSP` = **INTEGER** ; 以 **MP** 保存 **SP** 地图，默认为 $1$
+        - `VerticalLayout` = **BOOLEAN** ; 将底部视图转到右侧
+        - `RecentFileLimit` = **INTEGER** ; 保留最近的文件数，范围从 $4$ 到 $9$ 不等
+        - `MultiSelectionColor` = **COLORREF** ; 选定磁贴的背景色
+        - `MultiSelectionShiftDeselect` = **BOOLEAN** ; 取消选择所有的快捷键，CTRL+SHIFT+D为 **true** ，CTRL+D为 **false** , 默认为 **false**
+        - `RandomTerrainObjects` = **BOOLEAN** ; 在随机树行对话框中显示所有地形对象，默认为 **false**
+        - `DDrawInVideoMem` = **BOOLEAN** ; 在视频内存中分配DirectDraw图面，默认为 **true**
+        - `DDrawEmulation` = **BOOLEAN** ; DirectDrawCreate使用仿真模式，默认为 **false**
+        - `NoHouseNameTranslation` = **BOOLEAN** ; 使用国家的UIName, 默认为 **false**
+        - `EnableMultiSelection` = **BOOLEAN** ; 启用体验多选功能，默认为 **false**
+        - `ExtendedValidationNoError` = **BOOLEAN** ; 扩展地图验证以警告代替出错，默认为 **false**
+        - `HideNoRubbleBuilding` = **BOOLEAN** ; 不渲染HP=0且 `LeaveRubble=no` 的建筑物,默认为 **false**
+    - **`[Sides]`** （**x** 表示此项目是 **敏感** ，FA2SP需要此部分才能正常工作）
+        - rules中注册的阵营列表
         ```ini
         [Sides]
         0=Allied
@@ -84,7 +84,7 @@ Now this feature supports RaiseSingleTile/LowerSingleTile (though they are not "
         4=Special
         ```
     - `[Theaters]`
-        - Contains a list of theater names, only the existing 6 names are valid. If not listed then all default 6 theaters are used and displayed in order below:
+        - 环境名称列表，只有现有的6个名称有效。如果未列出，则按以下顺序使用和显示所有默认的6个环境：
         ```ini
         [Theaters]
         0=TEMPERATE
@@ -96,14 +96,14 @@ Now this feature supports RaiseSingleTile/LowerSingleTile (though they are not "
         ```
     - `[ForceName]`
         - xxx = Objecttype
-        - Contains a list of objecttypes forced to use Name instead of UIName
+        - 强制使用 Name 而不是 UIName 的对象类型列表
         ```ini
         [ForceName]
         0=E1
         ```
     - `[ForceSides]`
         - Technotype = SideIndex
-        - Contains a list of technotypes whose side cannot be correctly guessed
+        - 无法直接确定其阵营的对象列表
         ```ini
         [ForceSides]
         ENGINEER=0
@@ -113,7 +113,7 @@ Now this feature supports RaiseSingleTile/LowerSingleTile (though they are not "
         ; [NAWEAP] WILL BE GUESSED INTO SOVIETS, FIX THEM MANUALLY
         ```
     - `[ObjectBrowser.SmudgeTypes]` and `[ObjectBrowser.TerrainTypes]`
-        - Contained string = translation key in falanguage
+        - Falanguage中的string = 翻译
         ```ini
         [ObjectBrowser.SmudgeTypes]
         CRATER=SmudgeCraterObList
@@ -126,7 +126,7 @@ Now this feature supports RaiseSingleTile/LowerSingleTile (though they are not "
         LT=LightPostsObList
         ```
     - `[TileManagerDataXXX]` *TEM, SNO, URB, UBN, LUN, DES*
-        - DisplayName = Regex expression
+        - DisplayName = 正则表达式
         ```ini
         [TileManagerDataTEM]
         Cliff=cliff
@@ -146,7 +146,7 @@ Now this feature supports RaiseSingleTile/LowerSingleTile (though they are not "
     - `[XXXInfo]` *TemperateInfo, SnowInfo, UrbanInfo, NewUrbanInfo, DesertInfo, LunarInfo*
         - `Ramps=Tilesets`
         - `Morphables=Tilesets`
-          - All tilesets here should have `Morphable=true`. You don't need to write RampBase here, only other ramps need to be added here. The Ramps and Morphables should have the same length of tilesets, and those tilesets should be one-to-one correspondence. The old NewUrbanInfo's key `Ramps2` and `Morphable2` had been abandoned, so you need to add them manually.
+          - 此处的所有磁贴集都应 `Morphable=true`。你不需要在这里写 RampBase，只需要在这里添加其他Ramps。渐变和可变形对象应具有相同长度的磁贴集，并且这些磁贴集应是一对一的对应关系。旧的NewUrbanInfo的键 `Ramps2` 和 `Morphable2` 已被放弃，因此您需要手动添加它们。
         ```ini
         [NewUrbanInfo]
         Morphables=114,123
@@ -159,16 +159,14 @@ Now this feature supports RaiseSingleTile/LowerSingleTile (though they are not "
         buxu\123.mix=Yes
         money.txt=No
         
-        ; This means FA2 takes {FA2PATH\buxu\123.mix} into consider, and if not found the file,
-        ; it will search the file in {GAMEPATH\money.txt}, if this one still doesn't have the file,
-        ; FA2 will try to find the file as it used to be.
+        ; 添加 {FA2PATH\buxu\123.mix}，如果没有找到该文件，它将在 {GAMEPATH\money.txt} 中搜索该文件，如果找不到该文件，FA2将尝试像以前一样查找该文件。
         ```
     - `[OverlayDisplayLimit]`
-        - `OverlayIndex = DisplayLimit` *DisplayLimit should be less than or equals to $60$*
+        - `OverlayIndex = DisplayLimit` *DisplayLimit应小于等于 $60$*
         ```ini
         [OverlayDisplayLimit]
         243=48
-        ; This means FA2 won't display overlay 243's frames after 48
+        ; 不会在48以后显示地形243的帧
         ```
     - `[Filenames]`
         - `EVA = FILENAME`
@@ -209,30 +207,30 @@ Now this feature supports RaiseSingleTile/LowerSingleTile (though they are not "
         MixExtension=mp
         ```
     - `[ScriptTypeLists]`
-        - Contains a list of param type lists
-            - NOTICE THAT KEY BEGINS FROM $1$ AND HAS TO BE **INTEGER** 
+        - 参数类型列表
+            - 键从 $1$ 开始，并且必须是 **INTEGER**
         - `X=TypeListName`
     - `[TypeListName]`
-        - This name is just an example, it should be registered in the `[ScriptTypeLists]`
+        - 这只是个例子，它已在 `[ScriptTypeLists]` 中注册。
     ```ini
     [TypeListName]
     HasExtraParam = BOOLEAN
     ExtraParamType = ExtraParamTypeListName
     BuiltInType = INTEGER
     ScriptActionParam = Read the Description below 
-    ; Like 0=Buildings, key must be integer, will be ignored if BuiltInType being set and not -1
+    ; 比如 0=Buildings，键必须是整数，如果设置了 BuiltInType 且不是 -1，则忽略
     ```
     - [ExtraParamTypeListName]
-        - This name is just an example, it needn't to be registered in the `[ScriptTypeLists]`
+        - 这只是个例子，它不需要在 `[ScriptTypeLists]` 中注册。
     ```ini
     [ExtraParamTypeListName]
     BuiltInType = INTEGER
     ScriptActionExtraParam = Read the Description below
-    ; Like 0=Nearest, key must be integer, will be ignored if BuiltInType being set and not -1
+    ; 比如 0=Nearest，键必须是整数，如果设置了 BuiltInType 且不是 -1，则忽略
     ```
     - **`[ScriptParams]`**
-        - Contains a list of param types used for scripts
-            - NOTICE THAT OUR SCRIPT PARAMS ARE INDEPENDENT
+        - 用于脚本的参数类型列表
+            - 脚本参数是独立的
 
         | ID | Meaning |
         | :-: | :-: |
@@ -260,7 +258,7 @@ Now this feature supports RaiseSingleTile/LowerSingleTile (though they are not "
         | -X | ScriptTypeList at `[ScriptTypeLists]` X |
 
         ```ini
-        [ScriptParams] ; Our sample list
+        [ScriptParams] ; 示例列表
         0=Nothing,0
         1=Target,1
         2=Waypoint,2
@@ -285,10 +283,10 @@ Now this feature supports RaiseSingleTile/LowerSingleTile (though they are not "
         21=Boolean,20
         ```
     - **`[ScriptsRA2]`**
-        - `index = name, param, invisible, has param, description`
-        - Contains a list of script types used for scripts
+        - `index = 名称, 参数, 不可见, 带参数, 描述`
+        - 脚本列表
         ```ini
-        [ScriptsRA2] ; Sample by Caco
+        [ScriptsRA2] ; Caco的举例
         0=0 - Attack,1,0,1,Attack some general TARGET.
         1=1 - Attack WP,2,0,1,Attack specified WAYPOINT (or THINGS on it).
         2=2 - Go Berserk,0,1,0,Cyborgs go berserk (--Obsolete--)
@@ -369,7 +367,7 @@ Now this feature supports RaiseSingleTile/LowerSingleTile (though they are not "
     ```ini
     [StructureOverlappingCheckIgnorance]
     Index = RegName
-    ; Like 0=INORANLAMP, value must be a valid building regname
+    ; 比如 0=INORANLAMP，值必须为有效建筑注册名
     ```
 - `FALanguage.ini`
     ```ini
@@ -377,7 +375,7 @@ Now this feature supports RaiseSingleTile/LowerSingleTile (though they are not "
     [CURRENTLANGUAGE-Strings]
     [CURRENTLANGUAGE-TranslationsRA2]
     [CURRENTLANGUAGE-Translations]
-    ; Those four are all acceptable, just write under one of them is okey
+    ; 这四个都可以，只要其中一个就可以了
     MV_OverlapStructures = TEXT(%1 for count, %2 for X, %3 for Y)
     MV_LogicMissingParams = TEXT(%1 for section, %2 for key)
     TabPages.TilePlacement = TEXT
@@ -654,8 +652,8 @@ Now this feature supports RaiseSingleTile/LowerSingleTile (though they are not "
     NavigateCoordInvalidCoord = TEXT
     NavigateCoordInvalidTitle = TEXT
     FileWatcherMessage = TEXT
-    ; Script params
-    ; For example, ScriptParam.Status.0
+    ; 脚本参数
+    ; 例如ScriptParam.Status.0
     ScriptParam.Target.[0 - 11] = TEXT
     ScriptParam.SplitGroup.[0 - 3] = TEXT
     ScriptParam.Facing.[0 - 7] = TEXT
@@ -665,17 +663,17 @@ Now this feature supports RaiseSingleTile/LowerSingleTile (though they are not "
     ScriptExtraParam.Preference.[0 - 3] = TEXT
     ```
 
-## WRITE IN THE END
-- This project was developed after FA2Copy with still many bugs to fix, then Zero Fanker advised to use inline hooks instead of Win32API message hooks to implement more functions and fix more bugs, and finally we comes to FA2sp. 
+## 写在最后
+- 这个项目是在 FA2Copy 之后开发的，还有很多错误需要修复，然后 Zero Fanker 建议使用内联钩子而不是 Win32API 消息钩子来实现更多功能并修复更多错误，最后我们来到 FA2SP。
 
-- Thanks to AlexB, who gave me many suggestions and useful infomation while disassembling it. Chatting with him in the midnight because of time difference is quite interesting, too.
+- 感谢AlexB，他给了我许多反编译的建议和有用的信息。因为时差在半夜和他聊天也很有趣。
 
-- Zero Fanker has made a great contribution to the setting up of this project, with many essential suggestions put forward.
+- Zero Fanker为这个项目的建立做出了巨大的贡献，提出了许多重要的建议。
 
-- Caco did quite much test works for this project, also bringing out many problems I haven't noticed before.
+- Caco为这个项目做了大量的测试工作，也带来了许多我以前没有注意到的问题。
 
-- tomsons26 has made great assistance on disassembing it, REALLY HELPFUL.
+- Tomsons26在反编译方面提供了很大的帮助，真的很有帮助。
 
-- thomassneddon provided me with vxl drawing lib and drawing stuff assistence, without I cannot draw the VXL stuffs.
+- thomassneddon为我提供了VXL绘图库和绘图辅助，没有就无法绘制VXL内容。
 
-- btw the code of FinalAlert 2 is really in a MESSY! Full of unnecessary constructors. I HATE IT!
+- 顺便说一句，FA2 的代码真的很乱！充满了不必要的构造函数。我讨厌它！
